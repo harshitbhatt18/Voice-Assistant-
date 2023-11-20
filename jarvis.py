@@ -8,24 +8,26 @@ import os
 import sys
 import pywhatkit
 import requests
-from bs4 import BeautifulSoup 
-from plyer import notification
 import matplotlib.pyplot as plt
 import numpy as np
-from pywikihow import search_wikihow
 import PyPDF2
 import plyer
 import pyautogui
 import speedtest
 import random
 import pyperclip
+from pywikihow import search_wikihow
+from bs4 import BeautifulSoup 
+from plyer import notification
 from pytube import YouTube
 from pytube import Playlist
 from moviepy.editor import *
 from gtts import gTTS
 from geopy.geocoders import Nominatim
 from geopy.distance import geodesic
-import PyPDF2
+from tkinter import *
+from tkinter.ttk import *
+from PIL import Image, ImageTk
 engine=pyttsx3.init('sapi5')
 voice=engine.getProperty('voices')
 engine.setProperty('voice', voice[1].id)
@@ -47,11 +49,6 @@ def takeCommand():
       print("Say that again please...")
       return "None"
    return query
-def alarm(query):
-    timehere = open("Alarmtxt.txt","a")#check it
-    timehere.write(query)
-    timehere.close()
-    os.startfile("alarmtxt.py")
 def get_coordinates(city_name):
     geolocator = Nominatim(user_agent="city_distance_calculator")
     location = geolocator.geocode(city_name)
@@ -81,11 +78,11 @@ def video_music():
     play="C:\\Users\\HARSHIT BHATT\\Desktop\\code\\jrvis\\playlist\\vdo"
     while True:
         songs = os.listdir(play)
-        # numberr=random.randint(1,523)
-        os.startfile(os.path.join(play, songs[1]))
+        numberr=random.randint(1,78)
+        os.startfile(os.path.join(play, songs[numberr]))
         speak("do you wants to play next song")
         query=takeCommand().lower()
-        if "why" in query:
+        if "yes play next song" in query:
             speak("sure sir happy to hear")
             continue
         elif "no" in query:
@@ -95,11 +92,11 @@ def old_Audio_music():
     play="C:\\Users\\HARSHIT BHATT\\Desktop\\code\\jrvis\\playlist\\oldaud"
     while True:
         songs = os.listdir(play)
-        # numberr=random.randint(1,800)
-        os.startfile(os.path.join(play, songs[0]))
+        numberr=random.randint(1,30)
+        os.startfile(os.path.join(play, songs[numberr]))
         speak("do you want to play next song")
         query=takeCommand().lower()
-        if"why" in query:
+        if "yes" in query:
             speak("sure sir happy to hear")
             continue
         elif "no" in query:
@@ -108,11 +105,11 @@ def new_audio_music():
     play="C:\\Users\\HARSHIT BHATT\\Desktop\\code\\jrvis\\playlist\\newaud"
     while True:
         songs = os.listdir(play)
-        # numberr=random.randint(1,70)
+        numberr=random.randint(1,114)
         os.startfile(os.path.join(play, songs[0]))
-        speak("do you wants to play next song")
+        speak("do you want to play next song")
         query=takeCommand().lower()
-        if "why" in query:
+        if "yes" in query:
             speak("sure sir happy to hear")
             continue
         elif "no" in query:
@@ -148,6 +145,16 @@ def WishMe():
     speak("I am Jarvis sir Please tell me how may I help you") 
 if __name__=="__main__":
     # WishMe()
+    # root=Tk()
+    # root.configure(background='black')
+    # bg=PhotoImage(file='js.gif')
+    # Bgpic=Label(root,image=bg)
+    # Bgpic.place(x=0,y=0)
+    # greet = Label(root, text="JARVIS AI",font=("ALGERIAN",80),foreground='dark blue',background='black')
+    # greet.pack()
+    # vc = Button(root, text="Speak",command=WishMe)
+    # vc.place(x=100,y=400)
+    # root.mainloop()
     while True:    
         query = takeCommand().lower()
         if 'wikipedia' in query:
@@ -164,54 +171,31 @@ if __name__=="__main__":
         elif 'open zee5' in query:
             webbrowser.open("https://www.zee5.com")
         elif 'open sonyliv' in query:
-            webbrowser.open("https://www.sonyliv.com")        
-        elif 'open erp' in query:
+            webbrowser.open("https://www.sonyliv.com") 
+        elif 'open stackoverflow' in query:
+            webbrowser.open("https://www.stackoverflow.com")  
+        elif 'open vs code' in query:
+            codePath = "C:\\Users\\HARSHIT BHATT\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+            os.startfile(codePath)     
+        elif 'erp' in query:
             if 'hill' in query:
                 webbrowser.open("https://erp.gehu.ac.in")  
             elif 'deemed' in query:
                 webbrowser.open("https://erp.geu.ac.in")
         elif "history" in query:
             pyautogui.hotkey("ctrl","h")
-        elif "hand" in query:
-            text="""In this example, we first import the pywhatkit library, which includes the text_to_handwriting() function 
-            for handwriting synthesis. We then use the clipboard module of the library to get the text that has been copied to the clipboard, 
-            and store it in the text variable. Finally, we pass the text variable to the text_to_handwriting() function, which generates a 
-            handwritten image of the text and saves it to a file named "handwritten.png" in the current directory.
-            Note that the text_to_handwriting() function uses a default font and style for the handwriting, but you can customize these by passing additional arguments to the function. 
-            Additionally, the pywhatkit library requires the installation of the pyautogui and pillow packages, which you can install using pip."""
-            pywhatkit.text_to_handwriting(text,"demo1.png",[0,0,138])    
-        elif "trash history" in query:               #check this
+        elif "trash history" in query:              
             pyautogui.hotkey("ctrl","h")
             pyautogui.hotkey("ctrl","a")
             pyautogui.press("delete")
             pyautogui.press("enter")   
-        elif 'weather today' in query:    
-            webbrowser.open("https://www.google.com/search?q=weather&rlz=1C1VDKB_enIN1025IN1025&oq=whe&aqs=chrome.1.69i57j0i10i131i433i512j0i512l4j0i10i433i512j0i10i433i457i512j0i402l2.3410j0j15&sourceid=chrome&ie=UTF-8")      
-        elif 'time right now' in query:
+        elif 'time' in query or 'current time' in query:
             strTime = datetime.datetime.now().strftime("%H:%M:%S")
-            speak(f"sir The time is {strTime}")
+            speak(f"Sir, the time is {strTime}")
         elif 'who are you' in query:
-            speak("I am your friend and your voice assistence")  
-        elif 'play a song' in query:
-            webbrowser.open("https://www.youtube.com/watch?v=cZSrWoBMSrg")
-        elif 'play a movie' in query:
-            webbrowser.open("https://www.youtube.com/watch?v=B6h-kQLQqec")
-        elif 'i left' in query:                                             #check it
-            webbrowser.open("https://www.youtube.com/watch?v=MoeQlmeJnPg&list=PLu0W_9lII9agICnT8t4iYVSZ3eykIAOME&index=3")
-        elif 'open vs code' in query:
-            codePath = "C:\\Users\\HARSHIT BHATT\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
-            os.startfile(codePath)
-        elif 'open chrome' in query:
-            codePAth="C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
-            os.startfile(codePAth)
-        elif 'open youtube for harshit' in query:
-            codePaTh="C:\\Users\\HARSHIT BHATT\\Desktop\\code\\jrvis\\YouTube.lnk"
-            os.startfile(codePaTh)
-        elif 'open email for harshit' in query:
-            CodePath="C:\\Users\\HARSHIT BHATT\\Desktop\\code\\jrvis\\Gmail.lnk"
-            os.startfile(CodePath)
+            speak("I am your friend and your voice assistant")
         elif 'who is your creator' in query:
-            speak("My creators are Akshay Kumar and Harshit Bhatt.")
+            speak("My creator is Harshit Bhatt.")
         elif 'play some cultural songs' in query:
             webbrowser.open("https://www.youtube.com/watch?v=0ea9z7bQAe8&list=RDMM0ea9z7bQAe8&start_radio=1")
         elif 'what is the name of my pet' in query:
@@ -228,7 +212,7 @@ if __name__=="__main__":
                 speak(result)
             except:
                 speak("no speakable data Avilable!")    
-        elif 'search youtube' in query:
+        elif 'search youtube' in query or 'search in youtube' in query:
             speak("this is what i found for your search!")
             query = query.replace("youtube search for", "")
             query= query.replace("in youtube", "")
@@ -241,18 +225,9 @@ if __name__=="__main__":
             webbrowser.open(web)
             pywhatkit.playonyt(query)
             speak("done sir")
-        elif 'play music' in query:
-            speak("this is what i found on youtube music!")
-            query=query.replace("play music","")
-            query=query.replace("jarvis", "")
-            uery=query.replace("music","")
-            webt = "https://music.youtube.com/search?q=" + query
-            webbrowser.open(webt)
-            pywhatkit.playonyt(query)
-            speak("done sir!")
         elif "schedule my day" in query:                            
             tasks= [] 
-            speak("do you want to clear your all old tasks")
+            speak("do you want to clear your all old tasks, please say yes delete data, if you want")
             query=takeCommand().lower()
             if 'delete' in query:
                 file=open("tasks.txt","w")
@@ -284,7 +259,7 @@ if __name__=="__main__":
         elif 'open python' in query:
             pathcoder="C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Python 3.11\\IDLE (Python 3.11 64-bit).lnk"
             os.startfile(pathcoder)
-        elif "in calculator" in query:
+        elif "in calculator" in query: #change the code
             if "addition" in query:
                 audio=speak("please speak first number")
                 a=takeCommand()
@@ -341,28 +316,27 @@ if __name__=="__main__":
             speak(f"sir our system have {percentage} percent battery")    
         elif 'hard disk' in query or 'hard disc' in query:
             pathcode= "C:\\Users\\HARSHIT BHATT\\Desktop\\code\\jrvis\\This PC - Shortcut.lnk"
-            os.startfile(pathcode)
-        elif "open" in query:
-            query=query.replace("open","")
-            query=query.replace("jarvis","")
-            pyautogui.press("super")
-            pyautogui.typewrite(query)
-            pyautogui.press('enter')
-            pyautogui.press('enter')        
+            os.startfile(pathcode)     
         elif 'play video' in query:
             pyautogui.press("k")
             speak("video played")
+        elif 'next video' in query:
+            pyautogui.press("j")
+            speak("next video played")
+        elif 'previous video' in query:
+            pyautogui.press("k")
+            speak("previous video played")
         elif 'mute' in query:
             pyautogui.press("m")
             speak("video muted")
         elif 'unmute' in query:
             pyautogui.press("m")
             speak("video unmuted")    
-        elif 'volume up' in query:
+        elif 'volume up' in query: #check it
             from keyboard import volumeup
             speak("turning volume up sir")
             volumeup()
-        elif 'volume down' in query:
+        elif 'volume down' in query: #check it
             from keyboard import volumedown
             speak("turning  volume down")
             volumedown()
@@ -372,22 +346,14 @@ if __name__=="__main__":
              if shutdown == 'yes':
                 os.system("shutdown /s /t 1")
              elif shutdown == 'no':
-                break
-        elif "you can take a break" in query:
+                continue
+        elif "quit" in query:
             speak("thankyou sir for using me see you next time!")
-            speak("just say wake up jarvis!")
             break      
-        elif 'space video' in query:
+        elif 'pause video' in query:
             pyautogui.press("space")
             speak("video paused")      
-        elif "restart system" in query:
-             speak("are you sure you wants to restart")   
-             shutdown = input("do you want to restart your system")
-             if shutdown == 'yes':
-                os.system("restart /s /t 1")
-             elif shutdown == 'no':
-                break            
-        elif 'search on web' in query:
+        elif 'search in web' in query or 'search web' in query:
            query=query.replace("search","") 
            query=query.replace("web","")
            query=query.replace("on", "")
@@ -398,53 +364,55 @@ if __name__=="__main__":
         elif "forward" in query:
             pyautogui.press("l") 
         elif "full screen" in query:
-            pyautogui.press("f") 
-        elif "loafer" in query:
-            play="C:\\Users\\yashm\\Desktop\\playlist\\lofi"
-            songs = os.listdir(play)
-            numberr=random.randint(1,116)
-            os.startfile(os.path.join(play, songs[numberr]))                         
-        elif "popular song" in query:
-            webbrowser.open("https://www.youtube.com/watch?v=iHdYhdDg1Co")   
-        elif "set an alarm" in query:
-            print("input time example : 10 and 10 and 10")
-            speak("set the time")
-            a = input("please tell the time :-")
-            alarm(a)
-            speak("done,sir")
-        elif "internet speed" in query:
+            pyautogui.press("f")  
+        elif "internet speed" in query or 'speed test' in query:
+            speak("sir speed test is in progress, please wait for a minute to see the results")
             wifi = speedtest.Speedtest()
             upload_net=wifi.upload()/1048576
             download_net=wifi.download()/1048576
             print("Wifi download speed is",round(download_net/8,2),"MB")
             print("Wifi upload speed is",round(upload_net/8,2), "MB")
-            speak(f"wifi download speed is {round(upload_net/8,2)} MB")
-            speak(f"wifi upload speed is {round(upload_net/8,2)} MB")
+            speak(f"wifi download speed is {round(download_net/8,2)} MegaByte")
+            speak(f"wifi upload speed is {round(upload_net/8,2)} MegaByte")
         elif  'play next song' in query:
             pyautogui.press("j")
             speak("the next song played")
         elif "play previous song" in query:
             pyautogui.press("k")
-            speak("the previous song played00")
+            speak("the previous song played")
         elif "play current song" in query:
             pyautogui("l")
             speak("the song has played")
-        elif "music" in query:
-            speak("what kind of music you wants me to play ")
-            speak("video or audio")
+        elif "play music" in query:
+            speak("would you like to play music online or offline")
             query=takeCommand().lower()
-            if "audio" in query:
-                speak("Would you like to play old audio or new audio")
+            if "offline" in query:  
+                speak("what kind of music you want me to play ")
+                speak("video or audio")
                 query=takeCommand().lower()
-                if "old audio" in query:
-                    old_Audio_music()
-                elif "new audio" in query:
-                    new_audio_music()
-            elif "video" in query:
-                video_music()
-            else:
-                speak("your section is invalid")
-                break
+                if "audio" in query:
+                    speak("Would you like to play old audio or new audio")
+                    query=takeCommand().lower()
+                    if "old audio" in query:
+                        old_Audio_music()
+                    elif "new audio" in query:
+                        new_audio_music()
+                elif "video" in query:
+                    video_music()
+                else:
+                    speak("your section is invalid")
+                    continue
+            elif "online" in query:
+                speak("which song would you like to play")
+                query=takeCommand().lower()
+                speak("this is what i found on youtube music!")
+                query=query.replace("play music","")
+                query=query.replace("jarvis", "")
+                uery=query.replace("music","")
+                webt = "https://music.youtube.com/search?q=" + query
+                webbrowser.open(webt)
+                pywhatkit.playonyt(query)
+                speak("done sir!")
         elif "download current video" in query:
             pyautogui.hotkey("Ctrl","l")
             pyautogui.hotkey("Ctrl","c")
@@ -482,37 +450,11 @@ if __name__=="__main__":
             video_link=data
             print("video downloading....")
             speak("video downloading started")
-            YouTube(video_link).streams.get_highest_resolution().download("C:\\Users\\yashm\\Desktop\\playlist")
+            YouTube(video_link).streams.get_highest_resolution().download("C:\\Users\\HARSHIT BHATT\\Desktop\\code\\jrvis\\playlist")
             print("video downloaded successfully...")
             speak("the current movie is downloaded successfully")
-        elif "download current full playlist" in query:
-            pyautogui.hotkey("Ctrl","l")
-            pyautogui.hotkey("Ctrl","c")
-            pyautogui.hotkey("ctrl","v")
-            data=pyperclip.paste()
-            link=data
-            yt_playlist=Playlist(link)
-            speak("the current video downloading started")
-            for video in yt_playlist.videos: 
-               video.streams.get_highest_resolution(1).download("C:\\Users\\yashm\\Desktop\\c+")
-            print("video downloaded :",video.title)
-            print("\nall videos are downloaded")
-            speak("the current playlist is downloaded successsfully")
         elif "close " in query:
-            pyautogui.hotkey("alt","f4")    
-        elif "download current punjabi playlist" in query:
-            pyautogui.hotkey("Ctrl","l")
-            pyautogui.hotkey("Ctrl","c")
-            pyautogui.hotkey("ctrl","v")
-            data=pyperclip.paste()
-            link=data
-            yt_playlist=Playlist(link)
-            speak("the current video downloading started")
-            for video in yt_playlist.videos: 
-               video.streams.get_highest_resolution().download("C:\\Users\\yashm\\Desktop\\playlist\\punjabi songs best")
-            print("video downloaded :",video.title)
-            print("\nall videos are downloaded")
-            speak("the current playlist is downloaded successfully")
+            pyautogui.hotkey("alt","f4") 
         elif "who is my best friend" in query:
             speak("Akshay Kumar is your best friend sir")     
         elif "download current playlist" in query:
@@ -524,62 +466,23 @@ if __name__=="__main__":
             yt_playlist=Playlist(link)
             speak("the current video downloading started")
             for video in yt_playlist.videos: 
-               video.streams.get_highest_resolution().download("C:\\Users\\yashm\\Desktop\\playlist\\logic")
+               video.streams.get_highest_resolution().download("C:\\Users\\HARSHIT BHATT\\Desktop\\code\\jrvis\\playlist")
                print("video downloaded :",video.title)
             print("\nall videos are downloaded")
             speak("the current playlist is downloaded successsfully") 
-        elif "restart laptop" in query:
-            pyautogui.hotkey("alt","f4")
-            pyautogui.hotkey("alt","f4")
-            pyautogui.hotkey("pageDown")
-            pyautogui.hotkey("enter")
-            speak("you system is restarting")
-        elif "lock of" in query:
-            pyautogui.hotkey("Fn","Esc")
         elif "increase brightness" in query:
-            pyautogui.hotkey("Fn","f12")
+            pyautogui.press("F12")
         elif "decrease brightness" in query:
-            pyautogui.hotkey("Fn","f11")
+            pyautogui.press("F11")
         elif "screen capture" in query:
             pyautogui.hotkey("windows","alt","PrtSc")   
-        elif "you need some rest" in query:
-            speak("thankyou for using me sir ")
-            speak("please call me wake up next time ")
-            speak("it was a great time with you sir")
-            break
-        elif "download current audio playlist" in query:
-            pyautogui.hotkey("Ctrl","l")
-            pyautogui.hotkey("Ctrl","c")
-            pyautogui.hotkey("ctrl","v")
-            data=pyperclip.paste()
-            link=data
-            yt_playlist=Playlist(link)
-            speak("the current video downloading started")
-            for video in yt_playlist.videos: 
-               video.streams.get_highest_resolution().download("C:\\Users\\yashm\\Desktop\\playlist\\ragni")
-            print("video downloaded :",video.title)
-            print("\nall videos are downloaded")
-            speak("The current playlist is downloaded successsfully")  
-        elif "download old playlist" in query:
-            pyautogui.hotkey("Ctrl","l")
-            pyautogui.hotkey("Ctrl","c")
-            pyautogui.hotkey("ctrl","v")
-            data=pyperclip.paste()
-            link=data
-            yt_playlist=Playlist(link)
-            speak("the current video downloading started")
-            for video in yt_playlist.videos: 
-               video.streams.get_highest_resolution().download("C:\\Users\\yashm\\Desktop\\playlist\\old songs")
-            print("video downloaded :",video.title)
-            print("\nall videos are downloaded")
-            speak("the current playlist is downloaded successsfully")
         elif "download audio playlist" in query:
             pyautogui.hotkey("Ctrl","l")
             pyautogui.hotkey("Ctrl","c")
             pyautogui.hotkey("ctrl","v")
             data=pyperclip.paste()
             print("audio songs started downloading")
-            speak("audio songs is strated downloading")
+            speak("audio songs is started downloading")
             playlist_url = data
             playlist = Playlist(playlist_url)
             for video in playlist.videos:
@@ -672,3 +575,13 @@ if __name__=="__main__":
                else:
                     print("One or both city names could not be found.")
                     speak("One or both city names could not be found")
+        elif "mp3" in query or "convert to mp3" in query:
+            input_directory = "C:\\Users\\HARSHIT BHATT\\Desktop\\code\\jrvis\\playlist"
+            output_directory ="C:\\Users\\HARSHIT BHATT\\Desktop\\code\\jrvis\\playlist"
+            for filename in os.listdir(input_directory):
+                if filename.endswith(".mp4"):
+                    video = VideoFileClip(os.path.join(input_directory, filename))
+                    mp3_filename = os.path.splitext(filename)[0] + ".mp3"
+                    video.audio.write_audiofile(os.path.join(output_directory, mp3_filename))
+            print("Conversion completed.")
+    
